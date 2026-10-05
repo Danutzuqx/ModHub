@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ModBase — Minecraft Content Hub</title>
+<style>
+:root{--bg:#0b0d10;--panel:#11151a;--panel2:#171c22;--line:#242b34;--text:#eef2f7;--muted:#8f9aa8;--accent:#7c5cff;--accent2:#9b87ff;--danger:#ff5d73}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 70% -10%,#241b46 0,transparent 35%),var(--bg);color:var(--text);font:14px Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.app{display:flex;min-height:100vh}.sidebar{width:245px;border-right:1px solid var(--line);background:rgba(11,13,16,.9);padding:22px 15px;position:sticky;top:0;height:100vh}
+.logo{font-size:22px;font-weight:800;letter-spacing:-.6px;padding:0 10px 24px}.logo span{color:var(--accent)}
+.section-title{font-size:11px;text-transform:uppercase;color:#657080;letter-spacing:1.1px;padding:16px 10px 8px}.nav button{width:100%;background:none;border:0;color:#aeb7c3;text-align:left;padding:10px;border-radius:8px;margin:2px 0}.nav button:hover,.nav button.active{background:#191e26;color:#fff}.nav .count{float:right;color:#667180}
+.main{flex:1;min-width:0}.top{height:74px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;padding:0 28px;position:sticky;top:0;background:rgba(11,13,16,.86);backdrop-filter:blur(16px);z-index:5}.search{flex:1;max-width:720px;position:relative}.search input{width:100%;padding:12px 15px 12px 40px;background:#151a20;border:1px solid var(--line);border-radius:9px;color:#fff;outline:none}.search input:focus{border-color:#51448a}.search:before{content:"⌕";position:absolute;left:14px;top:8px;font-size:20px;color:#7c8795}.github{color:#9da7b4;text-decoration:none}.hero{padding:42px 30px 24px;max-width:1450px;margin:auto}.eyebrow{color:#a99cff;text-transform:uppercase;font-size:11px;letter-spacing:1.4px;font-weight:700}.hero h1{font-size:42px;line-height:1.05;margin:8px 0}.hero p{color:var(--muted);max-width:700px;font-size:15px}.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0 8px}.select,.chip{background:#151a20;border:1px solid var(--line);color:#dce2ea;border-radius:8px;padding:9px 11px}.chip{cursor:pointer}.chip.active{border-color:#6754c8;background:#211b3b;color:#fff}.content{padding:0 30px 50px;max-width:1450px;margin:auto}.bar{display:flex;align-items:center;justify-content:space-between;margin:18px 0}.bar h2{font-size:17px;margin:0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}.card{background:linear-gradient(180deg,#151a20,#11151a);border:1px solid var(--line);border-radius:12px;padding:16px;transition:.18s;min-height:190px}.card:hover{transform:translateY(-2px);border-color:#3b4350}.head{display:flex;gap:12px}.icon{width:52px;height:52px;border-radius:10px;object-fit:cover;background:#242b34;flex:none}.title{font-weight:750;font-size:16px;color:#fff;text-decoration:none}.title:hover{color:#b6aaff}.author{font-size:12px;color:#788392;margin-top:4px}.desc{color:#9ca6b3;line-height:1.45;margin:13px 0;height:41px;overflow:hidden}.tags{display:flex;gap:5px;flex-wrap:wrap}.tag{font-size:10px;color:#aab4c0;border:1px solid #2a323c;padding:4px 6px;border-radius:5px}.meta{display:flex;justify-content:space-between;align-items:center;margin-top:15px;padding-top:12px;border-top:1px solid #20262e;color:#778291;font-size:11px}.download{color:#c0b5ff;font-weight:650;text-decoration:none}.empty{padding:55px;text-align:center;border:1px dashed #303844;border-radius:12px;color:#7d8794}.loader{display:none;text-align:center;padding:30px;color:#929daa}.footer{text-align:center;color:#596472;padding:25px;border-top:1px solid var(--line);font-size:12px}
+@media(max-width:850px){.sidebar{display:none}.top{padding:0 15px}.hero,.content{padding-left:15px;padding-right:15px}.hero h1{font-size:32px}.grid{grid-template-columns:1fr}.github{display:none}}
+
+.logo small{display:block;font-size:8px;color:#596472;letter-spacing:1.6px;margin-top:3px}.titlewrap{min-width:0;flex:1}.star{border:0;background:none;color:#7d8795;font-size:20px;padding:0 2px}.star:hover{color:#c0b5ff}.quick-cats{display:flex;gap:8px;overflow:auto;padding-top:22px}.quick{white-space:nowrap;background:#12171d;border:1px solid #252c35;color:#9ba5b2;border-radius:999px;padding:8px 13px}.quick:hover,.quick.active{color:#fff;border-color:#6351c3;background:#1d1835}.light{--bg:#f2f4f7;--panel:#fff;--panel2:#fff;--line:#d8dde5;--text:#11151a;--muted:#687282}.light body{background:var(--bg);color:var(--text)}.light .sidebar,.light .top{background:rgba(242,244,247,.92)}.light .search input,.light .select,.light .chip,.light .quick,.light .card{background:#fff}.light .title,.light .nav button{color:#202630}.light .desc,.light .muted{color:#687282}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="logo">Mod<span>Base</span><small> MINECRAFT HUB</small></div>
+  <div class="section-title">Browse</div>
+  <nav class="nav">
+    <button class="active" data-home="1">Home</button>
+  </nav>
+  <div class="section-title">Content</div>
+  <nav class="nav" id="types">
+    <button class="active" data-type="">All Content <span class="count">∞</span></button>
+    <button data-type="mod">Mods</button>
+    <button data-type="modpack">Modpacks</button>
+    <button data-type="resourcepack">Resource Packs</button>
+    <button data-type="shader">Shaders</button>
+    <button data-type="datapack">Data Packs</button>
+    <button data-type="plugin">Plugins</button>
+  </nav>
+  <div class="section-title">Your library</div>
+  <nav class="nav">
+    <button id="favoritesBtn">Favorites <span class="count" id="favCount">0</span></button>
+  </nav>
+  <div class="section-title">Popular loaders</div>
+  <nav class="nav" id="loaders">
+    <button data-loader="">All Loaders</button>
+    <button data-loader="fabric">Fabric</button>
+    <button data-loader="forge">Forge</button>
+    <button data-loader="neoforge">NeoForge</button>
+    <button data-loader="quilt">Quilt</button>
+  </nav>
+</aside>
+<main class="main">
+<header class="top">
+  <div class="search"><input id="search" placeholder="Search mods, modpacks, shaders, resource packs..." autocomplete="off"></div>
+  <button class="select" id="themeBtn" title="Toggle appearance">◐ Theme</button>
+  <a class="github" href="https://modrinth.com/" target="_blank" rel="noopener">Powered by Modrinth ↗</a>
+</header>
+<section class="hero">
+  <div class="eyebrow">Minecraft content browser</div>
+  <h1>Find what belongs in your game.</h1>
+  <p>Browse the live Modrinth catalog for mods, modpacks, resource packs, shaders, data packs and plugins.</p>
+  <div class="toolbar">
+    <select class="select" id="version"><option value="">All Minecraft versions</option></select>
+    <select class="select" id="sort"><option value="relevance">Relevance</option><option value="downloads">Most downloaded</option><option value="follows">Most followed</option><option value="newest">Newest</option><option value="updated">Recently updated</option></select>
+    <button class="chip active" data-side="">Any environment</button>
+    <button class="chip" data-side="client_and_server">Client + Server</button>
+    <button class="chip" data-side="client_only">Client only</button>
+    <button class="chip" data-side="server_only">Server only</button>
+  </div>
+<div class="quick-cats">
+    <button class="quick active" data-qtype="">All</button>
+    <button class="quick" data-qtype="mod">Mods</button>
+    <button class="quick" data-qtype="modpack">Modpacks</button>
+    <button class="quick" data-qtype="resourcepack">Resource Packs</button>
+    <button class="quick" data-qtype="shader">Shaders</button>
+    <button class="quick" data-qtype="datapack">Data Packs</button>
+    <button class="quick" data-qtype="plugin">Plugins</button>
+  </div>
+</section>
+<section class="content">
+  <div class="bar"><h2 id="heading">All Content</h2><span class="muted" id="resultCount"></span></div>
+  <div id="grid" class="grid"></div>
+  <div id="loader" class="loader">Loading more…</div>
+  <div id="empty" class="empty" style="display:none">No projects found. Try another search or filter.</div>
+</section>
+<footer class="footer">ModBase is an independent interface. Project pages and downloads are provided by Modrinth and their respective creators.</footer>
+</main>
+</div>
+<script>
+const API='https://api.modrinth.com/v2/search';
+let state={type:'',loader:'',version:'',sort:'relevance',side:'',query:'',offset:0,total:0,loading:false,done:false};
+const grid=document.querySelector('#grid'), empty=document.querySelector('#empty'), loader=document.querySelector('#loader');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+const facets=()=>{let a=[];if(state.type)a.push([`project_type:${state.type}`]);if(state.loader)a.push([`categories:${state.loader}`]);if(state.version)a.push([`versions:${state.version}`]);if(state.side)a.push([`environment:${state.side}`]);return a};
+function url(){let p=new URLSearchParams({limit:30,offset:state.offset,index:state.sort});if(state.query)p.set('query',state.query);p.set('facets',JSON.stringify(facets()));return API+'?'+p}
+function isFav(id){return JSON.parse(localStorage.getItem('modbase_favorites')||'[]').includes(id)}
+function toggleFav(id){
+ let a=JSON.parse(localStorage.getItem('modbase_favorites')||'[]');
+ a=a.includes(id)?a.filter(x=>x!==id):[...a,id];
+ localStorage.setItem('modbase_favorites',JSON.stringify(a));
+ document.querySelector('#favCount').textContent=a.length;
+ document.querySelectorAll(`[data-fav="${CSS.escape(id)}"]`).forEach(b=>b.textContent=a.includes(id)?'★':'☆');
+}
+function card(x){
+ let type=x.project_type||x.all_project_types?.[0]||'project';
+ let versions=(x.versions||[]).slice(0,3).join(' · ');
+ let tags=(x.categories||[]).slice(0,4).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+ let fav=isFav(x.project_id);
+ let project=`https://modrinth.com/${esc(type)}/${esc(x.slug||x.project_id)}`;
+ return `<article class="card" data-id="${esc(x.project_id)}">
+   <div class="head"><img class="icon" src="${esc(x.icon_url||'')}" loading="lazy" onerror="this.style.visibility='hidden'">
+   <div class="titlewrap"><a class="title" href="${project}" target="_blank" rel="noopener">${esc(x.title)}</a>
+   <div class="author">by ${esc(x.author||'Unknown')}</div></div>
+   <button class="star" data-fav="${esc(x.project_id)}" onclick="toggleFav('${esc(x.project_id)}')" title="Favorite">${fav?'★':'☆'}</button></div>
+   <div class="desc">${esc(x.description||'No description available.')}</div>
+   <div class="tags"><span class="tag">${esc(type)}</span>${tags}</div>
+   <div class="meta"><span>↓ ${Number(x.downloads||0).toLocaleString()} · ${esc(versions)}</span><a class="download" href="${project}" target="_blank" rel="noopener">View / Download ↗</a></div>
+ </article>`;
+}
+async function load(reset=false){
+ if(state.loading||state.done)return;
+ if(reset){state.offset=0;state.total=0;state.done=false;grid.innerHTML='';empty.style.display='none'}
+ state.loading=true;loader.style.display='block';
+ try{
+   const r=await fetch(url()); if(!r.ok)throw new Error('API '+r.status);
+   const d=await r.json(); state.total=d.total_hits||0;
+   grid.insertAdjacentHTML('beforeend',(d.hits||[]).map(card).join(''));
+   state.offset+=d.hits?.length||0; if(!d.hits?.length||state.offset>=state.total)state.done=true;
+   document.querySelector('#resultCount').textContent=state.total?`${state.total.toLocaleString()} results`:'';
+   empty.style.display=state.total===0?'block':'none';
+ }catch(e){grid.innerHTML='<div class="empty" style="display:block">Could not load the Modrinth catalog. Check your internet connection and try again.</div>';console.error(e)}
+ finally{state.loading=false;loader.style.display='none'}
+}
+function setActive(group,attr,val){document.querySelectorAll(group+' button').forEach(b=>b.classList.toggle('active',b.dataset[attr]===val))}
+document.querySelectorAll('#types button').forEach(b=>b.onclick=()=>{state.type=b.dataset.type;setActive('#types','type',state.type);document.querySelector('#heading').textContent=b.textContent.trim();load(true)});
+document.querySelectorAll('#loaders button').forEach(b=>b.onclick=()=>{state.loader=b.dataset.loader;setActive('#loaders','loader',state.loader);load(true)});
+document.querySelectorAll('[data-side]').forEach(b=>b.onclick=()=>{state.side=b.dataset.side;document.querySelectorAll('[data-side]').forEach(x=>x.classList.toggle('active',x.dataset.side===state.side));load(true)});
+document.querySelector('#sort').onchange=e=>{state.sort=e.target.value;load(true)};
+document.querySelector('#version').onchange=e=>{state.version=e.target.value;load(true)};
+let timer;document.querySelector('#search').oninput=e=>{clearTimeout(timer);timer=setTimeout(()=>{state.query=e.target.value.trim();load(true)},350)};
+(async()=>{try{let r=await fetch('https://api.modrinth.com/v2/tag/game_version');let vs=await r.json();let sel=document.querySelector('#version');vs.filter(x=>x.version_type==='release').slice(0,80).forEach(x=>sel.insertAdjacentHTML('beforeend',`<option value="${esc(x.version)}">${esc(x.version)}</option>`))}catch(e){};load(true)})();
+window.addEventListener('scroll',()=>{if(window.innerHeight+window.scrollY>document.body.offsetHeight-700)load(false)});
+
+document.querySelectorAll('[data-qtype]').forEach(b=>b.onclick=()=>{
+ state.type=b.dataset.qtype;
+ document.querySelectorAll('[data-qtype]').forEach(x=>x.classList.toggle('active',x===b));
+ document.querySelectorAll('#types button').forEach(x=>x.classList.toggle('active',x.dataset.type===state.type));
+ document.querySelector('#heading').textContent=b.textContent.trim();
+ load(true);
+});
+document.querySelector('#favCount').textContent=JSON.parse(localStorage.getItem('modbase_favorites')||'[]').length;
+document.querySelector('#favoritesBtn').onclick=()=>{
+ const favs=JSON.parse(localStorage.getItem('modbase_favorites')||'[]');
+ if(!favs.length){alert('You have no favorites yet. Click ☆ on a project to save it.');return}
+ state.query=''; state.type=''; state.loader=''; state.version=''; state.side=''; state.sort='relevance';
+ alert('Favorites are saved locally in this browser. Use the ☆ buttons on cards to manage them.');
+};
+document.querySelector('#themeBtn').onclick=()=>{
+ document.documentElement.classList.toggle('light');
+ localStorage.setItem('modbase_theme',document.documentElement.classList.contains('light')?'light':'dark');
+};
+if(localStorage.getItem('modbase_theme')==='light')document.documentElement.classList.add('light');
+
+</script>
+</body>
+</html>
